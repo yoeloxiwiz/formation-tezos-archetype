@@ -1,0 +1,39 @@
+archetype assets
+
+enum Color =
+| White
+| Yellow
+| Red
+| Blue
+
+asset vehicle {
+   vin        : string;
+   color      : Color = Yellow;
+   nbrepairs  : nat   = 0;
+   lastrepair : date  = now;
+} initialized by {
+  {"vin00"; White;  0; 2020-01-01};
+  {"vin01"; Yellow; 0; 2020-01-01};
+  {"vin02"; White;  0; 2020-01-01};
+  {"vin03"; Red;    0; 2020-01-01};
+  {"vin04"; Red;    0; 2020-01-01};
+  {"vin05"; Yellow; 0; 2020-01-01};
+  {"vin06"; White;  0; 2020-01-01};
+  {"vin07"; Yellow; 0; 2020-01-01};
+  {"vin08"; Yellow; 1; 2019-01-01};
+  {"vin09"; Red;    3; 2019-04-01};
+  {"vin10"; White;  2; 2019-03-01};
+  {"vin11"; Yellow; 2; 2019-02-01}
+}
+
+entry add_vehicle (pvin : string) {
+  vehicle.add({ vin = pvin })
+}
+
+entry repair (k : string) {
+  vehicle.update(k, { nbrepairs += 1; lastrepair = now})
+}
+
+entry repaint_repaired (newc : Color) {
+  vehicle.select(the.nbrepairs >= 1).update_all({ color := newc })
+}

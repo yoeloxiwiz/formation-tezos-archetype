@@ -1,0 +1,8 @@
+
+archetype hello
+
+variable s : string = ""
+
+entry exec() {
+  s := "Hello Archetype World!"
+}

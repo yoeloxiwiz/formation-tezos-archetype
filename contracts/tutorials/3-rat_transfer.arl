@@ -1,0 +1,5 @@
+archetype rat_transfer
+
+entry payback () {
+  transfer (70% * transferred) to caller
+}

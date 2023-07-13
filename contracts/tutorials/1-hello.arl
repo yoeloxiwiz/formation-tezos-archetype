@@ -1,0 +1,7 @@
+archetype hello
+
+variable str : string = ""
+
+entry main () {
+  str := "Hello Tezos world!"
+}

@@ -1,0 +1,21 @@
+{
+    "name": "NFT Formation Annecy",
+    "description": "Illustration de l'équipe d'Annecy",
+    "formats": [
+      {
+        "uri": "ipfs://bafybeicfqucb2xr2lpvjfixcucespwymsn65qt6nl3f3hnfr2um5zcdcuu",
+        "mimeType": "image/png"
+      }
+    ],
+    "date": "2023-07-13T11:00:00.000Z",
+    "creators": [],
+    "decimals": 0,
+    "symbol": "NFT",
+    "tags": [
+      "formation Annecy"
+    ],
+    "attributes": [],
+    "artifactUri": "ipfs://bafybeicfqucb2xr2lpvjfixcucespwymsn65qt6nl3f3hnfr2um5zcdcuu",
+    "displayUri": "ipfs://bafybeicfqucb2xr2lpvjfixcucespwymsn65qt6nl3f3hnfr2um5zcdcuu",
+    "thumbnailUri": "ipfs://bafybeicfqucb2xr2lpvjfixcucespwymsn65qt6nl3f3hnfr2um5zcdcuu"
+  }

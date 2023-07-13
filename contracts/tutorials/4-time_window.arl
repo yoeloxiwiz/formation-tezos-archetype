@@ -1,0 +1,12 @@
+archetype time_window(const creation_date : date)
+
+variable creation : date = creation_date
+
+entry payback_after_period () {
+  require {
+      r1: now > creation + 5m10s
+  }
+  effect {
+      transfer balance to caller
+  }
+}

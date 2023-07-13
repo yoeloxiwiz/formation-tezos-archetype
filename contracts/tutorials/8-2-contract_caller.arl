@@ -1,0 +1,7 @@
+archetype contract_caller
+
+variable r : nat = 42
+
+entry set_n(addr : address) {
+  transfer 0tz to addr call set_n<nat>(r)
+}

@@ -1,0 +1,14 @@
+archetype payment_with_fees(owner : address)
+
+variable fee : rational = 10%
+
+entry pay (beneficiary : address) {
+  require {
+    r0: transferred > 0tz otherwise "REQUIRE_MIN_AMOUNT"
+  }
+  effect {
+    var f : tez = (fee * transferred);
+    transfer (transferred - f) to beneficiary;
+    transfer f to owner
+  }
+}

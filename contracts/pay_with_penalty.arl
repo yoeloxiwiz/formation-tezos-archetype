@@ -1,0 +1,6 @@
+archetype pay_with_penalty(holder : address, cost : tez, deadline : date)
+
+entry pay () {
+  const penalty = now > deadline ? 7% * (now - deadline) / 1d : 0;
+  transfer ((1 + penalty) * cost) to holder
+}

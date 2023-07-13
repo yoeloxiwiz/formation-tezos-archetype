@@ -1,0 +1,51 @@
+archetype poll(owner : address, expiration_date : date)
+
+variable question : string = "Quel est votre langage prefere ?"
+
+variable choices : list<string> = [
+    "PHP";
+    "JAVASCRIPT";
+    "PYTHON";
+    "JAVA";
+    "RUBY";
+    "C";
+    "C_SHARP";
+    "C_PLUS_PLUS";
+    "GO"
+]
+
+asset votes identified by choice {
+  choice : string;
+  count : nat = 0;
+}
+
+variable voters : list<address> = []
+
+entry set_expiration_date(new_expiration_date : date) {
+    called by owner
+    effect {
+        expiration_date := new_expiration_date
+    }
+}
+
+entry vote(choice_value : string) {
+    require {
+        r0: expiration_date > now otherwise "POLL_HAS_EXPIRED";
+        r1: contains(choices, choice_value) otherwise "CHOICE_NOT_IN_LIST";
+        r2: contains(voters, caller) <> true otherwise "ADDRESS_HAS_ALREADY_VOTED"
+    }
+    effect {
+        votes.add_update(choice_value, { count += 1 });
+        voters.prepend(caller)
+    }
+}
+
+view result() : string * nat {
+    var opt : option<string> = votes.sort(desc(count)).nth(0);
+    var r = ("", 0);
+    match opt with
+    | some(s) -> r := (s, votes[s].count)
+    | none    -> r := ("", 0)
+    end;
+    return r
+}

@@ -1,0 +1,7 @@
+archetype contract_called
+
+variable n : nat = 0
+
+entry set_n(p : nat) {
+  n := p
+}
