@@ -1,14 +1,12 @@
 archetype escrow(owner : address, beneficiary : address)
 
-variable amount : tez = 0tz
-
 entry deposit () {
     called by owner
     require {
         r0: transferred > 0tz otherwise "REQUIRE_MIN_AMOUNT"
     }
     effect {
-        amount := transferred
+        ()
     }
 }
 
@@ -16,6 +14,5 @@ entry release () {
     called by owner
     effect {
         transfer balance to beneficiary;
-        amount -= balance
     }
 }

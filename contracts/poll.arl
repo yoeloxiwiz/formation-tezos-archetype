@@ -45,7 +45,7 @@ view result() : string * nat {
     var r = ("", 0);
     match opt with
     | some(s) -> r := (s, votes[s].count)
-    | none    -> r := ("", 0)
+    | none    -> ()
     end;
     return r
 }
